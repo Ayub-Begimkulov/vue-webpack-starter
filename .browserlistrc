@@ -1,0 +1,6 @@
+[production]
+> 0.5%
+IE 10 
+
+[development]
+last 2 Chrome versions
