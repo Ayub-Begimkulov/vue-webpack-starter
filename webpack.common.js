@@ -1,7 +1,8 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: './src/index.js',
@@ -27,11 +28,18 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+        use: [
+          isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.css$/,
-        use: ['vue-style-loader', 'css-loader']
+        use: [
+          isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
+          'css-loader'
+        ]
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -56,7 +64,6 @@ module.exports = {
     modules: ['node_modules']
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
