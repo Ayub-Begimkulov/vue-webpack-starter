@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.[hash:8].js',
+    filename: 'bundle.[hash].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -60,7 +60,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.vue', '.js', '.sass', '.scss', '.css'],
+    extensions: ['.vue', '.js'],
     modules: ['node_modules']
   },
   plugins: [
