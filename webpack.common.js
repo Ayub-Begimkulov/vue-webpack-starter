@@ -1,13 +1,13 @@
 const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
-    filename: 'bundle.[hash].js',
+    filename: isDev ? '[name].js' : '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -65,7 +65,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: path.resolve(__dirname, 'src', 'index.html')
     }),
     new VueLoaderPlugin()
   ]

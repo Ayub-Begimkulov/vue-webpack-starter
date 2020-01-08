@@ -19,11 +19,16 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.(jpe?g|png|gif)$/,
+        test: /\.(jpe?g|png|gif|svg)$/,
         loader: 'image-webpack-loader',
         enforce: 'pre'
       }
     ]
   },
-  plugins: [new CleanWebpackPlugin(), new MiniCSSExtractPlugin()]
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCSSExtractPlugin({
+      filename: '[name].[contenthash].css'
+    })
+  ]
 });
