@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
-    filename: isDev ? '[name].js' : '[name].[contenthash].js',
+    filename: isDev ? '[name].js' : 'js/[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -46,7 +46,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           esModule: false,
-          limit: 10 * 1024
+          limit: 10 * 1024,
+          name: isDev ? '[name].[ext]' : 'img/[name].[hash].[ext]'
         }
       },
       {
@@ -54,7 +55,8 @@ module.exports = {
         loader: 'svg-url-loader',
         options: {
           limit: 10 * 1024,
-          noquotes: true
+          noquotes: true,
+          name: isDev ? '[name].svg' : 'img/[name].[hash].svg'
         }
       }
     ]
