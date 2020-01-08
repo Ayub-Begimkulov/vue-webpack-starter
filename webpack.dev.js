@@ -7,7 +7,8 @@ module.exports = merge(common, {
   devServer: {
     contentBase: './dist',
     hot: true,
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   optimization: {
     removeAvailableModules: false,
